@@ -163,6 +163,103 @@ void testes(void) {
   printf("\n--------FIM DOS TESTES---------\n\n");
 
   printf("\n----TESTES DE COMUNICACAO----\n");
+  int err;
+  Item* catalogo = criaCatalogo();
+  char nome1[30] = "catan";
+  char nome2[30] = "monopoly";
+  char nome3[30] = "jogo da vida";
+  catalogo = inserirJogo(catalogo, nome1, 10.0, &err);
+  catalogo = inserirJogo(catalogo, nome2, 15.0, &err);
+  catalogo = inserirJogo(catalogo, nome3, 20.5, &err);
+  
+  printf("\nTeste 1: busca de jogo existente\n");
+  FILE* testeFile = fopen("teste1.xml","r");
+  char saida[16] = "teste1saida.xml";
+  FILE* saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste1.xml\n");
+    printf("Arquivo resposta: teste1saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
 
-  FILE* teste1 = fopen("teste1.xml","r");
+  printf("\nTeste 2: busca de jogo não existente\n");
+  testeFile = fopen("teste2.xml","r");
+  strcpy(saida,"teste2saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste2.xml\n");
+    printf("Arquivo resposta: teste2saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
+  
+  printf("\nTeste 3: compra de jogo existente\n");
+  testeFile = fopen("teste3.xml","r");
+  strcpy(saida,"teste3saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste3.xml\n");
+    printf("Arquivo resposta: teste3saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
+  
+  printf("\nTeste 4: compra de jogo em falta\n");
+  testeFile = fopen("teste4.xml","r");
+  strcpy(saida,"teste4saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste4.xml\n");
+    printf("Arquivo resposta: teste4saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
+  
+  printf("\nTeste 5: compra de jogo não existente\n");
+  testeFile = fopen("teste5.xml","r");
+  strcpy(saida,"teste5saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste5.xml\n");
+    printf("Arquivo resposta: teste5saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
+  
+  printf("\nTeste 6: sugestão de jogo não existente\n");
+  testeFile = fopen("teste6.xml","r");
+  strcpy(saida,"teste6saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste6.xml\n");
+    printf("Arquivo resposta: teste6saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
+  
+  printf("\nTeste 7: sugestão de jogo já existente\n");
+  testeFile = fopen("teste7.xml","r");
+  strcpy(saida,"teste7saida.xml");
+  saidaFile = processarComando(testeFile, &catalogo, saida);
+  if (saidaFile) {
+    printf("Arquivo lido: teste7.xml\n");
+    printf("Arquivo resposta: teste7saida.xml\n");
+    fclose(saidaFile);
+  } else {
+    printf("ERRO\n");
+  }
+  fclose(testeFile);
 }

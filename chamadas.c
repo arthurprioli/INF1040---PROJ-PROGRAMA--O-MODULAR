@@ -13,14 +13,14 @@ void printaErro(FILE *saida, int err) {
   fprintf(saida, "<status>%d</status>\n", err);
 }
 
-FILE *processarComando(FILE *entrada, Item **cat) {
+FILE *processarComando(FILE *entrada, Item **cat, char *arq) {
   Item *catalogo = *cat;
   char comando[15];
   char nome[30];
   // fscanf(entrada, " ");
   int c = getc(entrada);
   if (c == '<') {
-    FILE *saida = fopen("saida.xml", "w+");
+    FILE *saida = fopen(arq, "w+");
     fscanf(entrada, "%[^>]>", comando);
     if (strcmp(comando, "compra") == 0) {
       int quant;
@@ -50,7 +50,7 @@ void compraJogo(FILE *saida, Item *catalogo, char *nome, int quant) {
     codErr = "JOGO NÃO EXISTENTE";
     err = nOK_jogoNaoExistente;
   } else {
-    resultado = alteraEstoque(jogoProc->estoque, quant, &err);
+    resultado = alteraEstoque(jogoProc->estoque, -quant, &err);
   }
   if (err == nOK_jogoEmFalta) {
     codErr = "JOGO EM FALTA";

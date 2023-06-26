@@ -7,7 +7,7 @@ Estoque *alteraEstoque(Estoque *estoque, int quant, int *erro) {
   *erro = 0;
   if ((estoque->quantidade + quant) < 0) {
     estoque->quantidade += 10;
-    *erro = 3;
+    *erro = 4;
   } else {
     estoque->quantidade += quant;
   }

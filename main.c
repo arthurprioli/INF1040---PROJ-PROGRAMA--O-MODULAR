@@ -108,7 +108,8 @@ int main(void) {
       valid = 0;
     }
     trataErros(&err);
-    FILE *saida = processarComando(entrada, &cat);
+    char saidaNome[10] = "saida.xml";
+    FILE *saida = processarComando(entrada, &cat, saidaNome);
     if (saida) {
       fclose(saida);
     }
